@@ -10,7 +10,8 @@
 public class main {
     
     public static void main(String[]args){
-        System.out.println("طالع لك او لا");
+        System.out.println("alooo");
+       
                
     }
     
