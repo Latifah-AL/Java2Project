@@ -10,7 +10,15 @@
 public class main {
     
     public static void main(String[]args){
-        System.out.println("alooo123");
+        //objects here
+        
+        
+        
+        do
+        {
+        System.out.println("---- Resturant----");
+        System.out.println("");
+        }
        
                
     }
