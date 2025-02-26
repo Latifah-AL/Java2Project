@@ -7,6 +7,6 @@
  *
  * @author latifah
  */
-public class Menu {
+public class MenuItems {
     
 }
