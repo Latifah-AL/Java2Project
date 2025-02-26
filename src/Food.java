@@ -3,10 +3,25 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
+
+
 /**
  *
- * @author latifah
+ * @author imusn
  */
-public abstract class Food extends MenuItems {
+public abstract class Food extends MenuItem {
+    protected String Cataegory;
+    public Food(String name, double price, String category)
+    {
+        super(name,price);
+        this.Cataegory=category;
+    }
+    public String getCategory()
+    {
+        return Cataegory;
+    }
+    public void displayItem() {
+        System.out.println("Food Item:"+getName()+ "Price:"+getPrice()+"Category:"+ Cataegory);
+    }
     
 }
