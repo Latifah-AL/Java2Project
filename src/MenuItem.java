@@ -7,12 +7,12 @@
  *
  * @author latifah
  */
-public abstract class MenuItems {
+public abstract class MenuItem {
     
     protected String name;
     protected double price;
     
-    public MenuItems(String name, double price){
+    public MenuItem(String name, double price){
         this.name=name;
         this.price=price;
     }

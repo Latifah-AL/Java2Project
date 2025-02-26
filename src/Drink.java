@@ -7,7 +7,7 @@
  *
  * @author latifah
  */
-public class Drink extends MenuItems {
+public class Drink extends MenuItem {
     //indcates wether the drink is cold or hot
     private boolean isCold;
     

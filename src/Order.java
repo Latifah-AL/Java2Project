@@ -10,18 +10,18 @@
 public class Order {
     
     private int orderID;
-    private MenuItems[] items;
+    private MenuItem[] items;
     private int itemCount;
     private double totalAmount;
     
     public Order(int orderID, int size){
         this.orderID=orderID;
-        this.items=new MenuItems[size];
+        this.items=new MenuItem[size];
         this.itemCount=0;
         this.totalAmount=0.0;
     }
     
-    public boolean addItem(MenuItems item){
+    public boolean addItem(MenuItem item){
         if(itemCount<items.length){
             items[itemCount++]=item;
         
