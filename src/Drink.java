@@ -8,5 +8,24 @@
  * @author latifah
  */
 public class Drink extends MenuItems {
+    //indcates wether the drink is cold or hot
+    private boolean isCold;
     
+    public Drink(String name, double price, boolean isCold ){
+       super(name,price);
+        this.isCold=isCold;
+    }
+
+    public boolean getIsCold() {
+        return isCold;
+    }
+    
+    
+    public void displayItem(){
+        String coldORhot =isCold?"Cold":"Hot";
+        System.out.println(name+" -"+coldORhot+" Drink-        "+price+"SAR");
+    }
+    
+
+           
 }

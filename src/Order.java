@@ -33,19 +33,23 @@ public class Order {
         }    
     }
     public double CalculateTotal(){
+        
         totalAmount=0.0;
         for(int i=0;i<itemCount;i++){
             totalAmount+=items[i].getPrice();
         }
         return totalAmount;
     }
+    
     public void DisplayOrder(){
         if(itemCount==0)
             System.out.println("Order "+this.orderID+" is empty.");
+        
         else{
             System.out.println("-------------------------------");
             System.out.println("Order ID : "+this.getOrderID());
             System.out.println("Items: ");
+            
             for(int i=0;i<itemCount;i++){
                 System.out.println(""+(i+1)+"- "+items[i].getName()+"    Price "+items[i].getPrice()+"SAR\n");
             }

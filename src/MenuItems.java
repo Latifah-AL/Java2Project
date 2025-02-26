@@ -7,6 +7,25 @@
  *
  * @author latifah
  */
-public class MenuItems {
+public abstract class MenuItems {
+    
+    protected String name;
+    protected double price;
+    
+    public MenuItems(String name, double price){
+        this.name=name;
+        this.price=price;
+    }
+    
+    public abstract void displayItem();
+
+    public String getName() {
+        return name;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+    
     
 }
