@@ -7,6 +7,6 @@
  *
  * @author latifah
  */
-public class Drink extends Menu {
+public class Drink extends MenuItems {
     
 }

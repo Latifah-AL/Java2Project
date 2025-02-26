@@ -7,6 +7,6 @@
  *
  * @author latifah
  */
-public abstract class Food extends Menu {
+public abstract class Food extends MenuItems {
     
 }
