@@ -21,9 +21,10 @@ public class Drink extends MenuItem {
     }
     
     
+    @Override
     public void displayItem(){
         String coldORhot =isCold?"Cold":"Hot";
-        System.out.println(name+" -"+coldORhot+" Drink-        "+price+"SAR");
+        System.out.println(name+" -"+coldORhot+" Drink - "+price+"SAR");
     }
     
 
