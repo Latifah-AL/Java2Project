@@ -76,6 +76,14 @@ public class Restaurant {
    {
        return ordercount;
            }
+   // Retrieves a menu item based on index
+public MenuItem getMenuItem(int index) {
+    if (index >= 0 && index < Menu.length) {
+        return Menu[index]; // Return menu item if index is valid
+    }
+    return null; // Return null if index is out of bounds
+}
+
        }
                        
     

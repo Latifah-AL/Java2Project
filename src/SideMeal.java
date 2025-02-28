@@ -9,9 +9,9 @@
  */
 public class SideMeal extends Food {
     private String portionSize;
-    public SideMeal(String name, double price, String Cataegory, String portionSize)
+    public SideMeal(String name, double price, String portionSize)
     {
-        super(name,price,Cataegory);
+        super(name,price,"Side Meal");
         this.portionSize=portionSize;
     }
     public String getportionSize()
@@ -20,7 +20,7 @@ public class SideMeal extends Food {
     }
     public void displayItem() 
     {
-        System.out.println("Side Meal:"+ getName()+ " Price:"+ getPrice()+" Category "+ getCategory()+"Portion Size:"+portionSize);
+        System.out.println(name + " -" + price + " SAR (" + portionSize + " Side Meal)");
     }
     }
 
