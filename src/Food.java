@@ -20,8 +20,5 @@ public abstract class Food extends MenuItem {
     {
         return Cataegory;
     }
-    public void displayItem() {
-        System.out.println("Food Item:"+getName()+ "Price:"+getPrice()+"Category:"+ Cataegory);
-    }
     
 }
