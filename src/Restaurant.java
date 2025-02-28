@@ -20,9 +20,10 @@ public class Restaurant {
    public void Displaymenu()
    {
        System.out.println("Menu:");
+       int i=1;
        for(MenuItem item : Menu ) {
            if ( item !=null) {
-               item.displayItem();
+               System.out.print(i+++"-");item.displayItem();
            }
            }
        }

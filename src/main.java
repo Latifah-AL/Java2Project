@@ -9,7 +9,7 @@
  */
 import java.util.Scanner;
 public class main {
-    private static int nextOrderId = 1001; // Auto-incrementing order ID
+    private static int nextOrderId = 1; // Auto-incrementing order ID
     private static Restaurant restaurant; // Restaurant instance
     public static void main(String[]args){
         //objects here
