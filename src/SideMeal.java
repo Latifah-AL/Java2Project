@@ -8,5 +8,19 @@
  * @author latifah
  */
 public class SideMeal extends Food {
-    
-}
+    private String portionSize;
+    public SideMeal(String name, double price, String Cataegory, String portionSize)
+    {
+        super(name,price,Cataegory);
+        this.portionSize=portionSize;
+    }
+    public String getportionSize()
+    {
+        return portionSize;
+    }
+    public void displayItem() 
+    {
+        System.out.println("Side Meal:"+ getName()+ " Price:"+ getPrice()+" Category "+ getCategory()+"Portion Size:"+portionSize);
+    }
+    }
+
