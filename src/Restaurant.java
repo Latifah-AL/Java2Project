@@ -84,8 +84,16 @@ public MenuItem getMenuItem(int index) {
     }
     return null; // Return null if index is out of bounds
 }
+public Order[] getOrders() {
+    return Orders;
+}
+public MenuItem [] getMenu() {
+    return Menu;
+}
 
-       }
+}
+
+       
                        
     
            
