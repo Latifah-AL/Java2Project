@@ -31,7 +31,9 @@ public class RestaurantTest {
         myRestaurant.addMenuItem(salad, 5);
        
         while (ch) {
-            System.out.println("================= MENU =================");
+            System.out.println("\n==========================================");
+            System.out.println("Welcome to the Bite & Chill Ordering System");
+            System.out.println("==========================================");
             System.out.println("1. View Menu");
             System.out.println("2. Create New Order");
             System.out.println("3. View Orders");
@@ -48,12 +50,16 @@ public class RestaurantTest {
                     myRestaurant.Displaymenu();
                     break;
                 case 2:
+                    System.out.println("\nCreating a new order...");
                     System.out.print("How many items do you want to order? ");
                     int orderSize = scanner.nextInt();
                     Order userOrder = myRestaurant.createOrder(orderSize);
+                    
                     if (userOrder != null) {
+                        
+                        myRestaurant.Displaymenu(); // displaying menu for the user
                         for (int i = 0; i < orderSize; i++) {
-                            System.out.print("Enter the menu item number: ");
+                            System.out.print("\nEnter an item from the menu (by number): "); 
                             int itemIndex = scanner.nextInt();
                             MenuItem[] menu = myRestaurant.getMenu(); // Use getter
                             if (itemIndex >= 0 && itemIndex < menu.length && menu[itemIndex] != null) {

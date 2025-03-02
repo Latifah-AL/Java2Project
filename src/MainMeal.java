@@ -21,7 +21,7 @@ public class MainMeal extends Food {
     }
     @Override
       public void displayItem() {
-        System.out.println(name + " -" + price + " SAR (" + type + " Main Meal)");
+        System.out.println(name + "     " + price + " SAR (" + type + " Main Meal)");
     }
     
 }

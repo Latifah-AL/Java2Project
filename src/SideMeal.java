@@ -20,7 +20,7 @@ public class SideMeal extends Food {
     }
     public void displayItem() 
     {
-        System.out.println(name + " -" + price + " SAR (" + portionSize + " Side Meal)");
+        System.out.println(name + "      " + price + " SAR (" + portionSize + " Side Meal)");
     }
     }
 

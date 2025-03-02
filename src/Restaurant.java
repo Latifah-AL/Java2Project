@@ -19,11 +19,11 @@ public class Restaurant {
    }
    public void Displaymenu()
    {
-       System.out.println("Menu:");
+       System.out.println("\nMenu:");
        int i=1;
        for(MenuItem item : Menu ) {
            if ( item !=null) {
-               System.out.print(i+++"-");item.displayItem();
+               System.out.print(i+++" - ");item.displayItem();
            }
            }
        }
@@ -31,7 +31,7 @@ public class Restaurant {
    {
        if(ordercount >= Orders.length) 
        {
-            System.out.println("can not add more orders,\n you have reached the limt");
+            System.out.println("Cannot create more orders. Maximum limit reached.");
             return null;
        }
        Order newOrder= new Order(ordercount +1, size);
