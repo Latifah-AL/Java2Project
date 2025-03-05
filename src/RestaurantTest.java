@@ -9,12 +9,15 @@
  */
 import java.util.Scanner;
 public class RestaurantTest {
+    
+   public static Scanner scanner = new Scanner(System.in);
+   public static Restaurant myRestaurant= new Restaurant(5, 3);
+   
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        
         boolean ch = true;
        
-       
-        Restaurant myRestaurant = new Restaurant(5, 3);
+     
        
         // Create menu items
         Food burger = new MainMeal("Burger", 25.5, "Beef");
@@ -50,7 +53,32 @@ public class RestaurantTest {
                     myRestaurant.Displaymenu();
                     break;
                 case 2:
-                    System.out.println("\nCreating a new order...");
+                    CreateOrder();
+                    break;
+                case 3:
+                    ViewOrder();
+                    break;
+                case 4:
+                   SearchOrder();
+                    break;
+                case 5:
+                    CancelOrder();
+                    break;
+                case 6:
+                    ch = false;
+                     System.out.println("Exiting the system. Thank you for using Bite & Chill Ordering System!");
+                    break;
+                default:
+                    System.out.println("Invalid option, please try again.");
+                    break;
+            }
+        }
+       
+       
+    }
+    
+    public static void CreateOrder(){
+        System.out.println("\nCreating a new order...");
                     System.out.print("How many items do you want to order? ");
                     int orderSize = scanner.nextInt();
                     Order userOrder = myRestaurant.createOrder(orderSize);
@@ -69,21 +97,22 @@ public class RestaurantTest {
                                 i--;
                             }
                         }
+                        System.out.println("\nOrder Created Successfully!");
                         userOrder.DisplayOrder();
                     }
-                     
-                   
-                    break;
-                case 3:
-                    Order[] orders = myRestaurant.getOrders(); // Use getter
+    }
+    
+    public static void ViewOrder(){
+        Order[] orders = myRestaurant.getOrders(); // Use getter
                     for (int i = 0; i < myRestaurant.getordercount(); i++) {
                         if (orders[i] != null) {
                             orders[i].DisplayOrder();
                         }
                     }
-                    break;
-                case 4:
-                    System.out.print("Enter the order ID to search for: ");
+    }
+    
+    public static void SearchOrder(){
+         System.out.print("Enter the order ID to search for: ");
                     int searchId = scanner.nextInt();
                     Order foundOrder = myRestaurant.SearchOrder(searchId);
                     if (foundOrder != null) {
@@ -91,26 +120,15 @@ public class RestaurantTest {
                     } else {
                         System.out.println("Order not found.");
                     }
-                    break;
-                case 5:
-                    System.out.print("Enter the order ID to cancel: ");
+    }
+    
+    public static void CancelOrder(){
+        System.out.print("Enter the order ID to cancel: ");
                     int cancelId = scanner.nextInt();
                     if (myRestaurant.cancleOrder(cancelId)) {
                         System.out.println("Order successfully canceled.");
                     } else {
                         System.out.println("Failed to cancel order. Check the entered ID.");
                     }
-                    break;
-                case 6:
-                    ch = false;
-                    System.out.println("Thank you for using the restaurant system!");
-                    break;
-                default:
-                    System.out.println("Invalid option, please try again.");
-                    break;
-            }
-        }
-       
-       
     }
 }

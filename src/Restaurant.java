@@ -46,11 +46,10 @@ public class Restaurant {
            if(Orders[i] != null && Orders[i].getOrderID() == orderId)
            {
                Orders[i]=null;
-               //System.out.println("Order"+orderId+"has been canceled");
                return true;
            }
            }
-           //System.out.println("Order was not found");
+          
            return false;
    }
    public Order SearchOrder(int orderId)

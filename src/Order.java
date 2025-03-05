@@ -21,6 +21,7 @@ public class Order {
         this.totalAmount=0.0;
     }
     
+    // add item to the order
     public boolean addItem(MenuItem item){
         if(itemCount<items.length){
             items[itemCount++]=item;
@@ -32,6 +33,7 @@ public class Order {
             return false;
         }    
     }
+    // calculate the total amount of the order
     public double CalculateTotal(){
         
         totalAmount=0.0;
@@ -40,22 +42,21 @@ public class Order {
         }
         return totalAmount;
     }
-    
+    // Display the order details
     public void DisplayOrder(){
-        if(itemCount==0)
-            System.out.println("Order "+this.orderID+" is empty.");
-        
-        else{
+ 
             System.out.println("-------------------------------");
             System.out.println("Order ID : "+this.getOrderID());
             System.out.println("Items: ");
             
+            // Display info of each item
             for(int i=0;i<itemCount;i++){
                 System.out.println(""+(i+1)+"- "+items[i].getName()+"    Price "+items[i].getPrice()+"SAR\n");
             }
+            // Display the total amount
             System.out.println("\nTotal Amount: "+this.CalculateTotal()+"SAR\n");
             System.out.println("\n------------------------------------------------");
-        }
+        
         
     }
 

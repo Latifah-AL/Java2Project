@@ -10,7 +10,9 @@
  * @author imusn
  */
 public abstract class Food extends MenuItem {
-    protected String Cataegory;
+    
+    protected String Cataegory; // if the food is main meal or side meal
+    
     public Food(String name, double price, String category)
     {
         super(name,price);
