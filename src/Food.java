@@ -13,12 +13,12 @@ public abstract class Food extends MenuItem {
     
     protected String Cataegory; // if the food is main meal or side meal
     
-    public Food(String name, double price, String category)
+    public Food(String name, double price, String category)//consrtucter
     {
-        super(name,price);
-        this.Cataegory=category;
+        super(name,price);//calls the super constructer
+        this.Cataegory=category;//sets the category of the item
     }
-    public String getCategory()
+    public String getCategory()//getter
     {
         return Cataegory;
     }
