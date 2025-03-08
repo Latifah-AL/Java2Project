@@ -76,6 +76,22 @@ public class RestaurantTest {
            
             switch (choice) {
                 case 1:
+                    MenuItem[] menu = myRestaurant.getMenu(); // get the menu
+        
+                    boolean menuIsEmpty = true;
+
+                     // Check if the menu has at least one item
+                    for (MenuItem item : menu) {
+                     if (item != null) {
+                     menuIsEmpty = false;
+                    break;
+                    }
+                    }
+
+                    if (menuIsEmpty) {
+                    System.out.println("\n The menu is empty! Please ask the manager to add items before creating an order.");
+                    break; // if the menu has no items
+                     }
                     myRestaurant.Displaymenu(); // displaying the menu of the food
                     break;
                     
