@@ -298,7 +298,7 @@ public static void main(String[] args) {
     // walk throgh the linked list to find the item
     while (current != null) {
         if (current.getData().getName().equalsIgnoreCase(name)) {
-            System.out.println("Found: ");
+            System.out.println("Found:");
             current.getData().displayItem(); // Display the item
             found = true;
             break; // Exit loop once item is found
