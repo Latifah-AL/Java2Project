@@ -7,7 +7,8 @@
  *
  * @author latifah
  */
-public abstract class MenuItem {
+import java.io.Serializable;
+public abstract class MenuItem implements Serializable{
     
     protected String name;
     protected double price;

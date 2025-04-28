@@ -7,7 +7,10 @@
  *
  * @author latifah
  */
-public class Restaurant {
+import java.io.Serializable;
+import java.util.*;
+import java.io.*;
+public class Restaurant implements Serializable {
     private int ordercount;//counter for the number of order placed
     private MenuItem  [] Menu; //an array with menuitem
    private  Order  [] Orders ; //an array that fills orders
@@ -89,8 +92,56 @@ public Order[] getOrders() {//getter
 public MenuItem [] getMenu() {//getter
     return Menu;
 }
-
 }
+/*public void saveallInformation()
+{
+    try{
+        File out=new File("Menu.dat");
+        FileOutputStream fos=new FileOutputStream(out);
+        ObjectOutputStream oos=new ObjectOutputStream(fos);
+        oos.writeObject(headMenuItem);
+        oos.close();
+        File out2-new File(" Orders.dat");
+
+        FileOutputStream fos2=new FileOutputStream (out2);
+        ObjectOutputStream oos2=new ObjectOutputStream(fos2);
+        oos2.writeObject(  Orders );
+        oos.close();
+        
+    }
+    catch(IOException e){
+        System.out.println(e.toString());
+}
+}
+public void readallDATA()
+{
+    try
+    {
+        File f=new File("Menu.dat");
+        FileInputStream ff=new FileInputStream(f);
+        ObjectInputStream in=new ObjectInputStream(ff);
+        headMenuItem=(Node) in.readObject();
+        in.close();
+        File f2=new File("Orders.dat");
+         FileInputStream ff2=new FileInputStream(f2);
+        ObjectInputStream in2=new ObjectInputStream(ff2);
+        Orders=(Orders[]) in2.readObject();
+        in2.close();
+        System.out.println("all data in the files have been loaded");
+   
+    }
+    catch(ClassNotFoundException ex)
+    {
+        System.out.println(ex.toString());
+    }
+    catch(IOException e)
+    {
+        System.out.println(e.toString());
+    }
+}*/
+
+
+
 
        
                        
