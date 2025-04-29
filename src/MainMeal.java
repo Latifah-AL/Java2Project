@@ -1,13 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 
 
-/**
- *
- * @author latifah
- */
+
 public class MainMeal extends Food {
 
     private String type; //type of meal griild , fried , baked

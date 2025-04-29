@@ -1,59 +1,56 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 
-/**
- *
- * @author latifah
- */
-import java.util.Scanner;
+
+
+import java.util.*;
 public class RestaurantTest {
     
    public static Scanner scanner = new Scanner(System.in);
    public static Restaurant myRestaurant= new Restaurant(5, 3); // create Restaurant that can have up to 5 items and 3 orders
    
-    public static void main(String[] args) {
+public static void main(String[] args) {
+    // Load existing data when starting
+    myRestaurant.readallDATA();
+
+    boolean outer = true;
+    while (outer) {
+        // main menu
+        System.out.println("\n==========================================");
+        System.out.println("Welcome to the Bite & Chill Ordering System");
+        System.out.println("==========================================");
+        System.out.println("1. Customer menu");
+        System.out.println("2. Manager menu");
+        System.out.println("3. Exit");
+        System.out.println("========================================");
+        System.out.print("Choose an option: ");
+        try{
+        int choice0 = scanner.nextInt();
         
-        
-        boolean outer=true;
-        while(outer){
-            // main menu
-            System.out.println("\n==========================================");
-            System.out.println("Welcome to the Bite & Chill Ordering System");
-            System.out.println("==========================================");
-            System.out.println("1. Coustmer menu");
-            System.out.println("2. Manger menu");
-            System.out.println("3. Exit");
-            System.out.println("========================================");
-            System.out.print("Choose an option: ");
-            int choice0 = scanner.nextInt();
-            
-            switch(choice0){
-                case 1 :
-                    Coustmer(); // displaying Coustmer menu
-                     break;
-                     
-                case 2 :
-                    Manager(); // displaying Manager menu
-                     break;
-                     
-                case 3 :
-                    outer = false; // Exiting the system
-                     System.out.println("Exiting the system. Thank you for using Bite & Chill Ordering System!");
-                    break;
-                    
-                default:
-                    System.out.println("Invalid option, please try again.");
-                    break;
-                
-            }
-        }//lana test يطلع لكم؟
-       
-  
-      
-       
+        switch (choice0) {
+            case 1:
+                Coustmer(); // displaying Customer menu
+                break;
+
+            case 2:
+                Manager(); // displaying Manager menu
+                break;
+
+            case 3:
+                // Save data before exiting
+                myRestaurant.saveallInformation();
+                outer = false; // Exiting the system
+                System.out.println("Exiting the system. Thank you for using Bite & Chill Ordering System!");
+                break;
+
+            default:
+                System.out.println("Invalid option, please try again.");
+                break;
+        }
+        } catch (InputMismatchException e) {
+        System.out.println("Invalid input. Please enter a number.");
+        scanner.nextLine(); // clear the invalid input
+        }
     }
+}
     ///////////////////////  Coustmer Menu and its methods :-
     
     public static void Coustmer()
@@ -76,25 +73,8 @@ public class RestaurantTest {
            
             switch (choice) {
                 case 1:
-                    MenuItem[] menu = myRestaurant.getMenu(); // get the menu
-        
-                    boolean menuIsEmpty = true;
-
-                     // Check if the menu has at least one item
-                    for (MenuItem item : menu) {
-                     if (item != null) {
-                     menuIsEmpty = false;
+                     menuDisplay();
                     break;
-                    }
-                    }
-
-                    if (menuIsEmpty) {
-                    System.out.println("\n The menu is empty! Please ask the manager to add items before creating an order.");
-                    break; // if the menu has no items
-                     }
-                    myRestaurant.Displaymenu(); // displaying the menu of the food
-                    break;
-                    
                 case 2:
                     CreateOrder(); // calling method to create the order
                     break;
@@ -119,53 +99,65 @@ public class RestaurantTest {
           }
     }
         
+        public static boolean menuDisplay(){
+            
+            boolean menuIsEmpty = true;
+
+                     // Check if the menu has at least one item by traversing the linked list
+                    Node current = myRestaurant.getHeadMenuItem();// Get the head of the menu list
+                     while (current != null) {
+                         if (current.getData() != null) {
+                             menuIsEmpty = false;
+                             break; // Exit the loop if we find a non-null item
+                                }
+                            current = current.getNext(); // Move to the next node
+                             }
+
+                        if (menuIsEmpty) {
+                        System.out.println("\nThe menu is empty! Please ask the manager to add items before creating an order.");
+                        return false;
+                       
+                        } else {
+                         myRestaurant.Displaymenu(); // Display the menu if it has items
+                         return true;
+                      
+                        }
+            
+        }
         // method to craete order for the coustmer 
         public static void CreateOrder() {
             
-        MenuItem[] menu = myRestaurant.getMenu(); // get the menu
-        
-        boolean menuIsEmpty = true;
+        if (menuDisplay()) { // Check if the menu has items
+        System.out.println("\nCreating a new order...");
 
-        // Check if the menu has at least one item
-        for (MenuItem item : menu) {
-            if (item != null) {
-                menuIsEmpty = false;
-                break;
-            }
-        }
-
-        if (menuIsEmpty) {
-            System.out.println("\n The menu is empty! Please ask the manager to add items before creating an order.");
-            return; // Exit the method if the menu has no items
-        }
-
-        System.out.println("\nCreating a new order..."); // create order if the menu has items
-        
-        System.out.print("How many items do you want to order? "); // to set the order size 
+        System.out.print("How many items do you want to order? ");
         int orderSize = scanner.nextInt();
-        
-        Order userOrder = myRestaurant.createOrder(orderSize); // creating order from the size entered by the coustmer
+        scanner.nextLine(); // Clear the garbage 
 
-        if (userOrder != null) 
-        {
-            myRestaurant.Displaymenu(); // Display the menu for the user again
-            
+        Order userOrder = myRestaurant.createOrder(orderSize); // create the order
+
+        if (userOrder != null) {
             for (int i = 0; i < orderSize; i++) {
-                
                 System.out.print("\nEnter an item from the menu (by number): ");
-                int itemIndex = scanner.nextInt() - 1; // Fixing index 
+                int itemNumber = scanner.nextInt();
+                scanner.nextLine(); // Clear the garbage 
 
-                if (itemIndex >= 0 && itemIndex < menu.length && menu[itemIndex] != null) { // checks if the item index is true and is in the menu
-                    userOrder.addItem(menu[itemIndex]);
+                // Find the item by number from the linked list
+                MenuItem selectedItem = myRestaurant.getMenuItemByNumber(itemNumber);
+
+                if (selectedItem != null) {
+                    userOrder.addItem(selectedItem);
                 } else {
                     System.out.println("Invalid number, try again.");
-                    i--; // Retry
+                    i--; // Retry the same item
                 }
             }
             System.out.println("\nOrder Created Successfully!");
-            userOrder.DisplayOrder(); // displaying info of the order with the total amount and all 
+            userOrder.DisplayOrder();
         }
     }
+}
+
 
     
     // method to search for the order by the order number
@@ -271,53 +263,57 @@ public class RestaurantTest {
                 return;
         }
 
-        // find the first empty index to add the item
-        MenuItem[] menu = myRestaurant.getMenu();
-        for (int i = 0; i < menu.length; i++) {
-            if (menu[i] == null) {
-                myRestaurant.addMenuItem(newItem, i);
-                System.out.println("Item added successfully at position " + (i + 1));
-                return; // if it add the item will exit the method
-            }
-        }
-        System.out.println("Menu is full, cannot add more items."); // if the item was not added will display
+       // Add the item using the method from the Restaurant class
+   if (myRestaurant.addMenuItem(newItem)) {
+        System.out.println("Item added successfully.");
+        myRestaurant.saveallInformation(); // Save changes after adding an item
+    } else {
+        System.out.println("Menu is full, cannot add more items.");
     }
+}
     
 
-    // Remove an item from the menu by index
+    // Remove an item from the menu by name
     public static void removeMenuItem() {
-        System.out.print("Enter the item number to remove: ");
-        int index = scanner.nextInt() - 1; // Fixing index 
+      
+    System.out.print("Enter the item name to remove: ");
+    String name = scanner.next();
 
-        MenuItem[] menu = myRestaurant.getMenu();
-        if (index >= 0 && index < menu.length && menu[index] != null) {
-            System.out.println(menu[index].getName() + " has been removed from the menu.");
-            menu[index] = null;
-        } else {
-            System.out.println("Invalid item number.");
-        }
+    if (myRestaurant.removeMenuItem(name)) {
+        System.out.println("Item has been removed from the menu.");
+        myRestaurant.saveallInformation(); // Save changes after removing an item
+    } else {
+        System.out.println("Invalid item name or menu is empty.");
     }
+}
 
     // Search for an item by name
     public static void searchMenuItem() {
-        System.out.print("Enter the name of the item to search: ");
-        String name = scanner.nextLine();
+    System.out.print("Enter the name of the item to search: ");
+    String name = scanner.nextLine();
 
-        MenuItem[] menu = myRestaurant.getMenu();
-        boolean found = false;
-        for (int i = 0; i < menu.length; i++) {
-            if (menu[i] != null && menu[i].getName().equalsIgnoreCase(name)) {
-                System.out.println("Found: " + (i + 1) + ". ");
-                menu[i].displayItem();
-                found = true;
-            }
+    Node current = myRestaurant.getHeadMenuItem(); // Assuming `getHeadMenuItem()` gives the head of the linked list
+    boolean found = false;
+   
+    // walk throgh the linked list to find the item
+    while (current != null) {
+        if (current.getData().getName().equalsIgnoreCase(name)) {
+            System.out.println("Found:");
+            current.getData().displayItem(); // Display the item
+            found = true;
+            break; // Exit loop once item is found
         }
-        if (!found) {
-            System.out.println("Item not found.");
-        }
+        current = current.getNext(); // Move to the next node
+        
     }
 
-   
+    if (!found) {
+        System.out.println("Item not found.");
+    }
+}
+
+
+  
     
    
 

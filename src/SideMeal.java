@@ -1,12 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 
-/**
- *
- * @author latifah
- */
+
+
 public class SideMeal extends Food {//child of food
     private String portionSize;//determine the size of the portion
     public SideMeal(String name, double price, String portionSize)
