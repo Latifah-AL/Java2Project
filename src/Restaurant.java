@@ -1,34 +1,33 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 
-/**
- *
- * @author latifah
- */
-import java.io.Serializable;
-import java.util.*;
+
 import java.io.*;
+import java.io.Serializable;
 public class Restaurant implements Serializable {
     private int ordercount;//counter for the number of order placed
-    private MenuItem  [] Menu; //an array with menuitem
+    Node headMenuItem; // Head of the linked list storing menu items
    private  Order  [] Orders ; //an array that fills orders
+   private int menuSize;
+   
    public  Restaurant (int menusize, int maxOrders) //constractor
    {       
-       this.Menu= new MenuItem[menusize];//set size
+       headMenuItem = null;
+       this.menuSize=menusize;
+       
        this.Orders=new Order[maxOrders];//set size
        this.ordercount=0;//sets counter to zero
    }
+   
    public void Displaymenu()//to print all item info
    {
        System.out.println("\nMenu:");
        int i=1;
-       for(MenuItem item : Menu ) {
-           if ( item !=null) {//if there is an item it will print it if it is null then it wont
-               System.out.print(i+++" - ");item.displayItem();
-           }
-           }
+       Node current = headMenuItem; // Start from the head
+       
+       while (current != null) { // Traverse the linked list
+        System.out.print(i++ + " - ");
+        current.getData().displayItem(); // display the MenuItem inside the Node
+        current = current.getNext(); // Move to the next node
+    }
        }
    public Order createOrder(int size) //creats an order if there is space
    {
@@ -66,86 +65,147 @@ public class Restaurant implements Serializable {
        }
        return null;
    }
-   public boolean addMenuItem (MenuItem item, int index)//it will add a menu item to the array
-   {
-       if (index >= 0 && index < Menu.length)
-       {
-           Menu[index]=item;
-           return true;
+   
+   public int countMenuItems(){
+       if(headMenuItem== null)
+           return 0;
+       int count =0;
+       Node current = headMenuItem;
+       while(current!= null){
+           count++;
+           current = current.getNext();
        }
-       return false;
+       return count;
+           
    }
+   public MenuItem getMenuItemByNumber(int number) {
+    Node current = headMenuItem;
+    int count = 1;
+
+    while (current != null) {
+        if (count == number) {
+            return current.getData();
+        }
+        count++;
+        current = current.getNext();
+    }
+    return null; // Not found
+    }
+   
+  public boolean removeMenuItem(String name) {
+    if (headMenuItem == null || name == null) {
+        return false; // No items or invalid name
+    }
+
+    // If the head node matches
+    if (headMenuItem.getData().getName().equalsIgnoreCase(name)) {
+        headMenuItem = headMenuItem.getNext(); // Remove head
+        return true;
+    }
+
+    Node current = headMenuItem;
+    // Traverse the list and look ahead
+    while (current.getNext() != null) {
+        if (current.getNext().getData().getName().equalsIgnoreCase(name)) {
+            current.setNext(current.getNext().getNext()); // Skip the node
+            return true;
+        }
+        current = current.getNext();
+    }
+
+    return false; // Not found
+}
+
+
+   
+   
+   public boolean addMenuItem(MenuItem item) // it will add a menu item to the linked list 
+   {
+       if(countMenuItems()<menuSize){
+            Node newNode = new Node(item);
+            newNode.setNext(headMenuItem);
+            headMenuItem = newNode;
+            return true;
+            }
+       return false;
+}
+
    public int getordercount() //setters and getters for the private attributs
    {
        return ordercount;
            }
    // Retrieves a menu item based on index
-public MenuItem getMenuItem(int index) {//if the index recived was not 0 and less than the length it will return it
-    if (index >= 0 && index < Menu.length) {
-        return Menu[index]; // Return menu item if index is valid
+    public MenuItem getMenuItem(int index) { // if the index received is valid, it will return the item from the linked list
+    if (index < 0) {
+        return null; // Invalid index
     }
-    return null; // Return null if index is out of bounds
+
+    Node current = headMenuItem;
+    int currentIndex = 0;
+
+    while (current != null) {
+        if (currentIndex == index) {
+            return current.getData(); // Found the item at the index
+        }
+        current = current.getNext();
+        currentIndex++;
+    }
+
+    return null; // Index out of bounds
 }
-public Order[] getOrders() {//getter
+
+    public Order[] getOrders() {//getter
     return Orders;
 }
-public MenuItem [] getMenu() {//getter
-    return Menu;
+    public Node getHeadMenuItem() { // getter for the linked list
+    return headMenuItem;
 }
-}
-/*public void saveallInformation()
-{
-    try{
-        File out=new File("Menu.dat");
-        FileOutputStream fos=new FileOutputStream(out);
-        ObjectOutputStream oos=new ObjectOutputStream(fos);
-        oos.writeObject(headMenuItem);
-        oos.close();
-        File out2-new File(" Orders.dat");
+    public void saveallInformation() {
+        try (FileOutputStream fos = new FileOutputStream("Menu.dat");
+            ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+           oos.writeObject(headMenuItem);
+       } catch (IOException e) {
+           System.out.println("Error saving menu: " + e.toString());
+       }
 
-        FileOutputStream fos2=new FileOutputStream (out2);
-        ObjectOutputStream oos2=new ObjectOutputStream(fos2);
-        oos2.writeObject(  Orders );
-        oos.close();
-        
+           try (FileOutputStream fos2 = new FileOutputStream("Orders.dat");
+            ObjectOutputStream oos2 = new ObjectOutputStream(fos2)) {
+           oos2.writeObject(Orders);
+       } catch (IOException e) {
+           System.out.println("Error saving orders: " + e.toString());
+       }
+   }
+
+    public void readallDATA() {
+        try (FileInputStream ff = new FileInputStream("Menu.dat");
+             ObjectInputStream in = new ObjectInputStream(ff)) {
+            headMenuItem = (Node) in.readObject();
+        } catch (ClassNotFoundException ex) {
+            System.out.println("Class not found: " + ex.toString());
+        } catch (IOException e) {
+            System.out.println("Error reading menu: " + e.toString());
+        }
+
+        try (FileInputStream ff2 = new FileInputStream("Orders.dat");
+             ObjectInputStream in2 = new ObjectInputStream(ff2)) {
+            Orders = (Order[]) in2.readObject();
+            System.out.println("All data in the files have been loaded");
+        } catch (ClassNotFoundException ex) {
+            System.out.println("Class not found: " + ex.toString());
+        } catch (IOException e) {
+            System.out.println("Error reading orders: " + e.toString());
+        }
     }
-    catch(IOException e){
-        System.out.println(e.toString());
-}
-}
-public void readallDATA()
-{
-    try
-    {
-        File f=new File("Menu.dat");
-        FileInputStream ff=new FileInputStream(f);
-        ObjectInputStream in=new ObjectInputStream(ff);
-        headMenuItem=(Node) in.readObject();
-        in.close();
-        File f2=new File("Orders.dat");
-         FileInputStream ff2=new FileInputStream(f2);
-        ObjectInputStream in2=new ObjectInputStream(ff2);
-        Orders=(Orders[]) in2.readObject();
-        in2.close();
-        System.out.println("all data in the files have been loaded");
-   
+
+
+
     }
-    catch(ClassNotFoundException ex)
-    {
-        System.out.println(ex.toString());
-    }
-    catch(IOException e)
-    {
-        System.out.println(e.toString());
-    }
-}*/
 
 
 
 
        
-                       
-    
+                      
            
     
             

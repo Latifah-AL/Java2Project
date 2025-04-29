@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 
 /**
  *
@@ -10,13 +7,14 @@
 import java.io.Serializable;
 import java.io.*;
 public class Order implements Serializable {
-    
-    private int orderID;
-    private MenuItem[] items;
-    private int itemCount;
-    private double totalAmount;
+
+    private int orderID; // id of the order 
+    private MenuItem[] items; // array to save the items of the order 
+    private int itemCount; // count how many item in the order
+    private double totalAmount; // calculate total amount for the order
     
     public Order(int orderID, int size){
+        
         this.orderID=orderID;
         this.items=new MenuItem[size];
         this.itemCount=0;
@@ -25,13 +23,13 @@ public class Order implements Serializable {
     
     // add item to the order
     public boolean addItem(MenuItem item){
-        if(itemCount<items.length){
+        if(itemCount<items.length){ // check if the array is full 
             items[itemCount++]=item;
         
             return true;
         }
         else {  
-            System.out.println("Order is Full! Cannot add more items.");
+            System.out.println("Order is Full! Cannot add more items."); // wil display a message only if the array is full
             return false;
         }    
     }
@@ -40,7 +38,7 @@ public class Order implements Serializable {
         
         totalAmount=0.0;
         for(int i=0;i<itemCount;i++){
-            totalAmount+=items[i].getPrice();
+            totalAmount+=items[i].getPrice(); // calculate price for each item and add it to the total 
         }
         return totalAmount;
     }
