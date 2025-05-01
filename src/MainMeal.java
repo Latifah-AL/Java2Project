@@ -1,7 +1,12 @@
 
 
 
-public class MainMeal extends Food {
+import java.io.Serializable;
+import java.io.*;
+public class MainMeal extends Food implements Serializable{
+
+
+
 
     private String type; //type of meal griild , fried , baked
     

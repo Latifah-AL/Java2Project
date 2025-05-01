@@ -1,7 +1,12 @@
 
 
 
-public class Drink extends MenuItem {
+ import java.io.*;
+public class Drink extends MenuItem implements Serializable{
+
+
+
+
     
     //indcates wether the drink is cold or hot
     private boolean isCold;

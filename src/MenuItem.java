@@ -1,4 +1,6 @@
 
+
+
 /**
  *
  * @author latifah
@@ -7,6 +9,7 @@ import java.io.Serializable;
 public abstract class MenuItem implements Serializable{
 
   
+
     
     protected String name; // name of the items
     protected double price; // price of the item

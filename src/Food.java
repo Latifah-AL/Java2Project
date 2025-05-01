@@ -1,7 +1,8 @@
 
 
+import java.io.Serializable;
 
-public abstract class Food extends MenuItem {
+public abstract class Food extends MenuItem implements Serializable {
     
     protected String Cataegory; // if the food is main meal or side meal
     
@@ -16,3 +17,7 @@ public abstract class Food extends MenuItem {
     }
     
 }
+
+
+
+

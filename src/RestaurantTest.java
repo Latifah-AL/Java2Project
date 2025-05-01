@@ -1,3 +1,6 @@
+
+
+
 import java.util.*;
 import java.io.*;
 public class RestaurantTest {
@@ -10,6 +13,8 @@ public static void main(String[] args) {
     myRestaurant.readallDATA();
 
     boolean outer = true;
+    FirstFrame Ffrist=new FirstFrame();
+    Ffrist.setVisible(true);
     while (outer) {
         // main menu
         System.out.println("\n==========================================");
@@ -31,7 +36,7 @@ public static void main(String[] args) {
                 break;
 
             case 2:
-                Manager(); // displaying Manager menu
+               //new ManagerGUI( myRestaurant); // displaying Manager menu
                 break;
 
             case 3:
@@ -207,6 +212,7 @@ public static void main(String[] args) {
 
         switch (choice) {
             case 1:
+                
                 addMenuItem(); // caling addMenuItem method to add new items 
                 break;
             case 2:

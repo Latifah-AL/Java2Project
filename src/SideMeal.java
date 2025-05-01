@@ -1,7 +1,10 @@
 
+import java.io.*;
+
+public class SideMeal extends Food implements Serializable{//child of food
 
 
-public class SideMeal extends Food {//child of food
+
     private String portionSize;//determine the size of the portion
     public SideMeal(String name, double price, String portionSize)
     {
