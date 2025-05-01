@@ -1,6 +1,5 @@
-
-
 import java.io.*;
+
 import java.io.Serializable;
 public class Restaurant implements Serializable {
     private int ordercount;//counter for the number of order placed
@@ -119,16 +118,18 @@ public class Restaurant implements Serializable {
 
    
    
-   public boolean addMenuItem(MenuItem item) // it will add a menu item to the linked list 
+   public boolean addMenuItem(MenuItem item) throws MenuFullEx// it will add a menu item to the linked list 
    {
-       if(countMenuItems()<menuSize){
+       
+         if (countMenuItems() >= menuSize) {
+          throw new MenuFullEx("Can not add any more items,Menu is full");
+}
             Node newNode = new Node(item);
             newNode.setNext(headMenuItem);
             headMenuItem = newNode;
             return true;
             }
-       return false;
-}
+       
 
    public int getordercount() //setters and getters for the private attributs
    {
@@ -200,13 +201,3 @@ public class Restaurant implements Serializable {
 
 
     }
-
-
-
-
-       
-                      
-           
-    
-            
-
