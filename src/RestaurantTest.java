@@ -1,7 +1,5 @@
-
-
-
 import java.util.*;
+import java.io.*;
 public class RestaurantTest {
     
    public static Scanner scanner = new Scanner(System.in);
@@ -22,7 +20,9 @@ public static void main(String[] args) {
         System.out.println("3. Exit");
         System.out.println("========================================");
         System.out.print("Choose an option: ");
+
         try{
+
         int choice0 = scanner.nextInt();
         
         switch (choice0) {
@@ -45,10 +45,13 @@ public static void main(String[] args) {
                 System.out.println("Invalid option, please try again.");
                 break;
         }
+
+
         } catch (InputMismatchException e) {
         System.out.println("Invalid input. Please enter a number.");
         scanner.nextLine(); // clear the invalid input
         }
+
     }
 }
     ///////////////////////  Coustmer Menu and its methods :-
@@ -226,53 +229,53 @@ public static void main(String[] args) {
     
 
        // Add a new item to the menu
-    public static void addMenuItem() {
-        
-        System.out.print("Enter item type (1. Main Meal, 2. Side Meal, 3. Drink): "); // ask for type of item
-        int type = scanner.nextInt();
-        scanner.nextLine();
+ public static void addMenuItem() {
+    System.out.print("Enter item type (1. Main Meal, 2. Side Meal, 3. Drink): ");
+    int type = scanner.nextInt();
+    scanner.nextLine();
 
-        System.out.print("Enter item name: ");
-        String name = scanner.nextLine();
+    System.out.print("Enter item name: ");
+    String name = scanner.nextLine();
 
-        System.out.print("Enter item price: ");
-        double price = scanner.nextDouble();
-        scanner.nextLine();
+    System.out.print("Enter item price: ");
+    double price = scanner.nextDouble();
+    scanner.nextLine();
 
-        MenuItem newItem = null;
+    MenuItem newItem = null;
 
-        switch (type) {
-            case 1: // if the item choosen is main meal
-                System.out.print("Enter meal type ( Grilled, Baked, Fried ): ");
-                String mealType = scanner.nextLine();
-                newItem = new MainMeal(name, price, mealType);
-                break;
-            case 2: // if the item choosen is Side meal
-                System.out.print("Enter portion size (Small, Mediam, Large): ");
-                String portionSize = scanner.nextLine();
-                newItem = new SideMeal(name, price, portionSize);
-                break;
-            case 3: // if the item choosen is Drink
-                System.out.print("Is the drink cold? (true/false): ");
-                boolean isCold = scanner.nextBoolean();
-                scanner.nextLine();
-                newItem = new Drink(name, price, isCold);
-                break;
-            default:
-                System.out.println("Invalid item type.");
-                return;
+    switch (type) {
+        case 1:
+            System.out.print("Enter meal type ( Grilled, Baked, Fried ): ");
+            String mealType = scanner.nextLine();
+            newItem = new MainMeal(name, price, mealType);
+            break;
+        case 2:
+            System.out.print("Enter portion size (Small, Medium, Large): ");
+            String portionSize = scanner.nextLine();
+            newItem = new SideMeal(name, price, portionSize);
+            break;
+        case 3:
+            System.out.print("Is the drink cold? (true/false): ");
+            boolean isCold = scanner.nextBoolean();
+            scanner.nextLine();
+            newItem = new Drink(name, price, isCold);
+            break;
+        default:
+            System.out.println("Invalid item type.");
+            return;
+    }
+
+    try {
+        if (myRestaurant.addMenuItem(newItem)) {
+            System.out.println("Item added successfully.");
+            myRestaurant.saveallInformation();
+        } else {
+            System.out.println("Failed to add item for unknown reasons.");
         }
-
-       // Add the item using the method from the Restaurant class
-   if (myRestaurant.addMenuItem(newItem)) {
-        System.out.println("Item added successfully.");
-        myRestaurant.saveallInformation(); // Save changes after adding an item
-    } else {
-        System.out.println("Menu is full, cannot add more items.");
+    } catch (MenuFullEx e) {
+        System.out.println("Exception caught: " + e.getMessage());
     }
 }
-    
-
     // Remove an item from the menu by name
     public static void removeMenuItem() {
       
@@ -292,7 +295,7 @@ public static void main(String[] args) {
     System.out.print("Enter the name of the item to search: ");
     String name = scanner.nextLine();
 
-    Node current = myRestaurant.getHeadMenuItem(); // Assuming `getHeadMenuItem()` gives the head of the linked list
+    Node current = myRestaurant.getHeadMenuItem(); // Assuming getHeadMenuItem() gives the head of the linked list
     boolean found = false;
    
     // walk throgh the linked list to find the item
@@ -313,8 +316,7 @@ public static void main(String[] args) {
 }
 
 
+
   
-    
-   
 
     }
