@@ -295,7 +295,7 @@ public static void main(String[] args) {
     System.out.print("Enter the name of the item to search: ");
     String name = scanner.nextLine();
 
-    Node current = myRestaurant.getHeadMenuItem(); // Assuming getHeadMenuItem() gives the head of the linked list
+    Node current = myRestaurant.getHeadMenuItem(); // Assuming `getHeadMenuItem()` gives the head of the linked list
     boolean found = false;
    
     // walk throgh the linked list to find the item
