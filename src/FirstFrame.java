@@ -46,6 +46,11 @@ public class FirstFrame extends javax.swing.JFrame {
         });
 
         jButton2.setText("Maneger");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Exit");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -103,6 +108,12 @@ cButton.setVisible(true);
        System.exit(0);
        
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // ManagerGUI
+        ManagerGUI mButton=new ManagerGUI();
+mButton.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
