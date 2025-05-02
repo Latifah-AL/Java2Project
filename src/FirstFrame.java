@@ -111,7 +111,7 @@ cButton.setVisible(true);
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // ManagerGUI
-        ManagerGUI mButton=new ManagerGUI();
+ ManagerGUI mButton=new ManagerGUI(RestaurantTest.myRestaurant);
 mButton.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 

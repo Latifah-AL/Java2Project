@@ -65,6 +65,21 @@ public class Order implements Serializable {
 
     public int getOrderID() {
         return orderID;
+        
     }
+    @Override
+public String toString() {
+    String text = "Order ID: " + this.getOrderID() + "\n";
+    text += "Items:\n";
+
+    for (int i = 0; i < itemCount; i++) {
+        text += (i + 1) + "- " + items[i].getName() + "\n";
+    }
+
+    text += "\nTotal Amount: " + this.CalculateTotal();
+    return text;
+}
+
+    
     
 }
